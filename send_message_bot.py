@@ -62,4 +62,4 @@ def send_messages(email, password, excel_file, message):
 
 
 # Example usage
-send_messages("winter28022003@gmail.com", "Cuong123@" , "output.xlsx", "hello")
+send_messages("your email", "your password" , "output.xlsx", "hello")

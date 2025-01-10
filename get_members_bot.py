@@ -101,8 +101,8 @@ def scrape_facebook_groups(email, password, group_links):
 
 
 # Example usage
-email = "winter28022003@gmail.com"
-password = "Cuong123@"
+email = "your email"
+password = "your password"
 group_links = [
     "https://www.facebook.com/groups/160136771415190"  # 1.6k
 ]
