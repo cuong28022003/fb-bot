@@ -1,15 +1,14 @@
 from selenium import webdriver
-from selenium.webdriver.chrome.service import Service
-from webdriver_manager.chrome import ChromeDriverManager
 import time
 from selenium.webdriver.common.by import By
 import pandas as pd
+from selenium.webdriver.common.action_chains import ActionChains
 from selenium.common.exceptions import StaleElementReferenceException
 import re
 
 
 def launch_browser():
-    driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()))
+    driver = webdriver.Chrome()
     driver.get("https://www.facebook.com/")
     return driver
 
@@ -27,7 +26,13 @@ def get_group_elements(driver, group_link):
         driver.get(full_link)
 
         # Wait for the page to load
-        time.sleep(5)
+        time.sleep(3)
+        
+        close_notification = driver.find_element(
+            By.XPATH,
+            '//div[@class="x1uvtmcs x4k7w5x x1h91t0o x1beo9mf xaigb6o x12ejxvf x3igimt xarpa2k xedcshv x1lytzrv x1t2pt76 x7ja8zs x1n2onr6 x1qrby5j x1jfb8zj"]',
+        )
+        ActionChains(driver).move_to_element(close_notification).click().perform()
 
         # Scroll down to the bottom of the page
         last_height = driver.execute_script("return document.body.scrollHeight")
@@ -102,7 +107,9 @@ def scrape_facebook_groups(email, password, group_links):
 
 # Example usage
 email = "your email"
+
 password = "your password"
+
 group_links = [
     "https://www.facebook.com/groups/160136771415190"  # 1.6k
 ]

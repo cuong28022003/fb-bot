@@ -4,12 +4,9 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.common.action_chains import ActionChains
 from selenium.common.exceptions import NoSuchElementException
 import time
-from webdriver_manager.chrome import ChromeDriverManager
-from selenium.webdriver.chrome.service import Service
-
 
 def send_messages(email, password, excel_file, message):
-    driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()))
+    driver = webdriver.Chrome()
     driver.get("https://www.facebook.com/")
     
     driver.maximize_window()
@@ -29,6 +26,13 @@ def send_messages(email, password, excel_file, message):
         # Navigate to the user's profile
         driver.get(user_link)
         time.sleep(3)  # Wait for the page to load
+        
+        close_notification = driver.find_element(
+                By.XPATH,
+                '//div[@class="x1uvtmcs x4k7w5x x1h91t0o x1beo9mf xaigb6o x12ejxvf x3igimt xarpa2k xedcshv x1lytzrv x1t2pt76 x7ja8zs x1n2onr6 x1qrby5j x1jfb8zj"]',
+            )
+        ActionChains(driver).move_to_element(close_notification).click().perform()
+        
 
         try:
             # Click on the div with aria-label="Message"

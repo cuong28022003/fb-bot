@@ -1,5 +1,4 @@
-2k -> 1.7k (5mins)
-20k -> 1.9k (10mins)
-30k -> 600 (10mins)
-1.5k -> 1.3k (5mins)
-1.6k -> 
+build .exe:
+pyinstaller --onefile --noconsole get_members_bot_application.py
+pyinstaller --onefile --noconsole send_message_bot_application.py
+
